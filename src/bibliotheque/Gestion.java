@@ -108,11 +108,9 @@ public class Gestion {
 
     private void gestLocations() {
 //TODO lister exemplaires,lister lecteurs,créer la location avec le constructeur à deux paramètres(loueur,exemplaire)
-
     }
 
     private void gestLecteurs() {
-
         sc.skip("\n");
         System.out.println("nom ");
         String nom=sc.nextLine();
@@ -140,19 +138,57 @@ public class Gestion {
     }
 
     private void gestExemplaires() {
-        //TODO afficher les ouvrages et choisir par sa position dans la liste
-        //TODO demander autres infos de l'exemplaire et le créer
-
+        System.out.println("Matricule : ");
+        String matricule = sc.nextLine();
+        System.out.println("Description Etat :");
+        String descEtat = sc.nextLine();
+        System.out.println("Liste des ouvrages: (choisissez-en un");
+        int i=1;
+        int position=0;
+        for (Ouvrage ouvr:louv) {
+            System.out.println(i+". "+ouvr);
+        }
+        position=sc.nextInt();
+        Ouvrage ouvra = louv.get(position);
+        Exemplaire e = new Exemplaire(matricule,descEtat,ouvra);
+        lex.add(e);
     }
 
     private void gestOuvrages() {
-        //TODO créer ouvrages
-
+        sc.skip("\n");
+        System.out.println("Titre");
+        String titre = sc.nextLine();
+        System.out.println("Age minimum");
+        int ageMin = sc.nextInt();
+        System.out.println("Date de parution");
+        String[] jma = sc.nextLine().split(" ");
+        int j = Integer.parseInt(jma[0]);
+        int m = Integer.parseInt(jma[1]);
+        int a = Integer.parseInt(jma[2]);
+        LocalDate dp= LocalDate.of(a,m,j);
+        System.out.println("Entrez le type de l'ouvrage ");
+        //
+        System.out.println("Entrez le prix de location");
+        double prixLocation = sc.nextDouble();
+        System.out.println("Entrez la langue");
+        String langue = sc.nextLine();
+        System.out.println("Entrez le genre");
+        String genre = sc.nextLine();
+        System.out.println("Sélectionnez les auteurs");
+        //
     }
 
     private void gestAuteurs() {
-        //TODO créer auteur
-
+        sc.skip("\n");
+        System.out.println("nom ");
+        String nom=sc.nextLine();
+        System.out.println("prénom ");
+        String prenom=sc.nextLine();
+        System.out.println("Nationalite : ");
+        String nationalite=sc.nextLine();
+        Auteur aut = new Auteur(nom,prenom,nationalite);
+        laut.add(aut);
+        System.out.println("Auteur créé");
     }
 
     public static void main(String[] args) {
