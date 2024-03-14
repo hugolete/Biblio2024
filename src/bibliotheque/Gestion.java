@@ -184,7 +184,7 @@ public class Gestion {
         String nom=sc.nextLine();
         System.out.println("prénom ");
         String prenom=sc.nextLine();
-        System.out.println(" Nationalite : ");
+        System.out.println("Nationalite : ");
         String nationalite=sc.nextLine();
         Auteur aut = new Auteur(nom,prenom,nationalite);
         laut.add(aut);
