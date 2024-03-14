@@ -146,7 +146,7 @@ public class Gestion {
         int i=1;
         int position=0;
         for (Ouvrage ouvr:louv) {
-            System.out.println(i+". "+ouvr);
+            System.out.println(i+".  "+ouvr);
         }
         position=sc.nextInt();
         Ouvrage ouvra = louv.get(position);
