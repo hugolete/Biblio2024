@@ -1,6 +1,7 @@
 package bibliotheque.gestion;
 
 import bibliotheque.metier.*;
+import bibliotheque.metier.Exemplaire;
 import bibliotheque.utilitaires.Utilitaire;
 
 import java.time.LocalDate;
