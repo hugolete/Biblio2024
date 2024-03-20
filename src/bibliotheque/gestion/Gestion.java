@@ -222,12 +222,13 @@ public class Gestion {
                              choix=Utilitaire.choixListe(langues);
                              if(choix==langues.size())break;
                              ((DVD)o).getSousTitres().add(langues.get(choix-1));//TODO vérifier unicité ou utiliser set
-                             }while(true);
+                             } while(true);
                             ;break;
             }
            louv.add(o);
         System.out.println("ouvrage créé");
         //TODO ajouter 1 auteur à la liste des auteurs
+
     }
 
        private void gestAuteurs() {
