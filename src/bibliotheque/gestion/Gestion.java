@@ -156,9 +156,16 @@ public class Gestion {
         System.out.println("ouvrage ");
         int choix = Utilitaire.choixListe(louv);
         Exemplaire ex = new Exemplaire(mat,etat,louv.get(choix-1));
+
+        System.out.println("Choisissez le rayon");
+        int cptRayon=1;
+        for (Rayon ray:lrayon) {
+            System.out.println(cptRayon+". "+ray.getCodeRayon()+" | Genre : "+ray.getGenre());
+        }
+        int indexRayon = sc.nextInt();
+        ex.setRayon(lrayon.get(indexRayon));
         lex.add(ex);
         System.out.println("exemplaire créé");
-        //TODO attribuer rayon
     }
 
     private void gestOuvrages() {
