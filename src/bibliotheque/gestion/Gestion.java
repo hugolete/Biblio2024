@@ -4,6 +4,7 @@ import bibliotheque.metier.*;
 import bibliotheque.metier.Exemplaire;
 import bibliotheque.utilitaires.Utilitaire;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -161,6 +162,7 @@ public class Gestion {
         int cptRayon=1;
         for (Rayon ray:lrayon) {
             System.out.println(cptRayon+". "+ray.getCodeRayon()+" | Genre : "+ray.getGenre());
+            cptRayon++;
         }
         int indexRayon = sc.nextInt();
         ex.setRayon(lrayon.get(indexRayon));
@@ -232,10 +234,24 @@ public class Gestion {
                              } while(true);
                             ;break;
             }
-           louv.add(o);
-        System.out.println("ouvrage créé");
-        //TODO ajouter 1 auteur à la liste des auteurs
-
+        System.out.println("Choisissez le ou les auteurs");
+        ArrayList<Auteur> listeAuteurs = new ArrayList<>();
+        int cptAuteur=1;
+        int a=1;
+        do{
+            for (Auteur aut:laut) {
+                System.out.println(cptAuteur+". "+aut.getPrenom()+" "+aut.getNom());
+                cptAuteur++;
+            }
+            int indexAuteur = sc.nextInt();
+            listeAuteurs.add(laut.get(indexAuteur));
+            System.out.println("Voulez-vous ajouter un autre auteur ? Tapez 1 si oui, 2 si non");
+            a=sc.nextInt();
+            cptAuteur=1;
+        }
+        while (a==1);
+        louv.add(o);
+        System.out.println("Ouvrage créé");
     }
 
        private void gestAuteurs() {
