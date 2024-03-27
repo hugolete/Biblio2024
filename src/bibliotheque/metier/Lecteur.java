@@ -116,23 +116,19 @@ public class Lecteur {
     }
 
     public List<Exemplaire> listerExemplairesEnLocation(){
-        List<Exemplaire> listeExemplaires = new ArrayList<>();
-        for (Location location:lloc) {
-            if(location.getDateLocation()!=null){
-                //l'exemplaire est loué
-                listeExemplaires.add(location.getExemplaire());
-            }
+        List<Exemplaire> lex = new ArrayList<>();
+        for(Location loc : lloc){
+            if(loc.getDateRestitution()!=null)lex.add(loc.getExemplaire());
         }
-        return listeExemplaires;
+        return lex;
     }
 
-    public List<Exemplaire> listerExemplairesEnLoues(){
-        List<Exemplaire> listeExemplaires = new ArrayList<>();
-        for (Location location:lloc) {
-            if(location.getDateLocation() == null){
-                listeExemplaires.add(location.getExemplaire());
-            }
+    public List<Exemplaire> listerExemplairesLoues(){
+        List<Exemplaire> lex = new ArrayList<>();
+        for(Location loc : lloc){
+            lex.add(loc.getExemplaire());
+            //TODO empêcher doublon si exemplaire loué plusieurs fois par même lecteur
         }
-        return listeExemplaires;
+       return lex;
     }
 }
