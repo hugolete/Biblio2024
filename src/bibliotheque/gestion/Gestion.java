@@ -185,7 +185,7 @@ public class Gestion {
         sc.skip("\n");
         System.out.println("langue");
         String langue=sc.nextLine();
-        System.out.println("genre");
+        System.out.println("genre"); //
         String genre=sc.nextLine();
         TypeOuvrage[] tto = TypeOuvrage.values();
         List<TypeOuvrage> lto = new ArrayList<>(Arrays.asList(tto));
