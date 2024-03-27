@@ -1,5 +1,6 @@
 package bibliotheque.gestion;
 
+
 import bibliotheque.metier.*;
 import bibliotheque.utilitaires.CDFactoryBeta;
 import bibliotheque.utilitaires.DVDFactoryBeta;
@@ -7,10 +8,7 @@ import bibliotheque.utilitaires.LivreFactoryBeta;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static bibliotheque.utilitaires.Utilitaire.choixListe;
 
@@ -148,6 +146,7 @@ public class Gestion {
     }
 
     private void gestRayons() {
+        ExemplaireComparator comparator = new ExemplaireComparator();
         System.out.println("code ");
         String code=sc.next();
         System.out.println("genre ");
@@ -159,6 +158,30 @@ public class Gestion {
         r.addExemplaire(lex.get(choix-1));
         //TODO attribuer par une boucle plusieurs exemplaires, les exemplaires sont triés par ordre de titre de l'ouvrage ,
         //  ne proposer que les exemplaires qui ne sont pas dans déjà présents dans ce rayon et qui ne sont dans aucun autre rayon
+        List<Exemplaire> listeExs= new ArrayList<>();
+        listeExs=r.getLex(); //exemplaires déja présents dans le rayon
+        Collections.sort(lex,comparator);
+        int continuer=0;
+        do{
+            System.out.println("Liste des exemplaires :");
+            for (Exemplaire e:lex) {
+                for (Exemplaire ex:listeExs) {
+                    if(!e.equals(ex)){
+                        System.out.println(e);
+                    }
+                }
+            }
+            System.out.println("Entrez le matricule de l'exemplaire voulu");
+            String mat = sc.nextLine();
+            for (Exemplaire e:lex) {
+                if(e.getMatricule().equals(mat)){
+                    r.addExemplaire(e);
+                }
+            }
+            System.out.println("Ajouter un autre exemplaire ? (1 pour oui, 0 pour non)");
+            continuer=sc.nextInt();
+        }
+        while (continuer==1);
     }
 
     private void gestExemplaires() {
@@ -278,6 +301,13 @@ public class Gestion {
         //TODO attribuer ouvrages par boucle
         // les ouvrages sont triés par ordre de titre
         // ne pas proposer un ouvrage déjà présent dans la liste des ouvrages de cet auteur
+    }
+
+    public class ExemplaireComparator implements Comparator<Exemplaire> {
+        @Override
+        public int compare(Exemplaire exemplaire1, Exemplaire exemplaire2) {
+            return exemplaire1.getOuvrage().getTitre().compareTo(exemplaire2.getOuvrage().getTitre());
+        }
     }
 
     public static void main(String[] args) {
